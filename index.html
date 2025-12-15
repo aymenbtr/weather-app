@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmos — Ultra Premium Weather Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        // Enhanced animation library
+                        'fade-in': 'fadeIn 0.6s ease-in',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in-down': 'fadeInDown 0.8s ease-out',
+                        'fade-in-left': 'fadeInLeft 0.8s ease-out',
+                        'fade-in-right': 'fadeInRight 0.8s ease-out',
+                        'slide-up': 'slideUp 0.7s ease-out',
+                        'slide-down': 'slideDown 0.7s ease-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        
+                        // Floating & Breathing
+                        'float': 'float 4s ease-in-out infinite',
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-fast': 'float 2s ease-in-out infinite',
+                        'float-reverse': 'floatReverse 5s ease-in-out infinite',
+                        'breath': 'breath 3s ease-in-out infinite',
+                        'breath-slow': 'breath 5s ease-in-out infinite',
+                        'pulse-gentle': 'pulseGentle 3s ease-in-out infinite',
+                        
+                        // Wind Effects
+                        'wind-gust': 'windGust 8s ease-in-out infinite',
+                        'wind-strong': 'windStrong 6s ease-in-out infinite',
+                        'wind-wave': 'windWave 4s ease-in-out infinite',
+                        'compass-spin': 'compassSpin 20s linear infinite',
+                        'ribbon-flow': 'ribbonFlow 15s linear infinite',
+                        'flag-wave': 'flagWave 3s ease-in-out infinite alternate',
+                        
+                        // Element Animations
+                        'sway-left': 'swayLeft 8s ease-in-out infinite alternate',
+                        'sway-right': 'swayRight 7s ease-in-out infinite alternate',
+                        'sway-gentle': 'swayGentle 5s ease-in-out infinite alternate',
+                        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                        'twinkle': 'twinkle 3s ease-in-out infinite',
+                        'orbit': 'orbit 20s linear infinite',
+                        'orbit-reverse': 'orbitReverse 25s linear infinite',
+                        'orbit-slow': 'orbit 40s linear infinite',
+                        
+                        // Particle Effects
+                        'snow-fall': 'snowFall 20s linear infinite',
+                        'rain-fall': 'rainFall 1.5s linear infinite',
+                        'leaf-fall': 'leafFall 15s linear infinite',
+                        'dust-drift': 'dustDrift 30s linear infinite',
+                        'pollen-float': 'pollenFloat 25s linear infinite',
+                        'ember-float': 'emberFloat 10s linear infinite',
+                        'fog-drift': 'fogDrift 40s linear infinite',
+                        
+                        // UI Animations
+                        'flip-in': 'flipIn 0.6s ease-out',
+                        'roll-in': 'rollIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                        'scale-pulse': 'scalePulse 2s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+                        'ripple': 'ripple 2s linear infinite',
+                        'liquid-wave': 'liquidWave 4s ease-in-out infinite',
+                        'needle-sway': 'needleSway 5s ease-in-out infinite alternate',
+                        
+                        // Weather Effects
+                        'lightning-flash': 'lightningFlash 0.2s ease-out',
+                        'thunder-pulse': 'thunderPulse 3s ease-in-out infinite',
+                        'cloud-swirl': 'cloudSwirl 30s linear infinite',
+                        'sun-glow': 'sunGlow 4s ease-in-out infinite',
+                        'moon-glow': 'moonGlow 5s ease-in-out infinite',
+                        'frost-crystallize': 'frostCrystallize 10s linear infinite',
+                        
+                        // Special Effects
+                        'shimmer': 'shimmer 3s infinite',
+                        'rainbow-shift': 'rainbowShift 10s linear infinite',
+                        'aurora-wave': 'auroraWave 20s ease-in-out infinite alternate',
+                        'heat-haze': 'heatHaze 5s ease-in-out infinite',
+                        'blizzard-gust': 'blizzardGust 10s ease-in-out infinite',
+                        
+                        // Micro-interactions
+                        'button-press': 'buttonPress 0.3s ease-out',
+                        'card-lift': 'cardLift 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                        'toggle-bounce': 'toggleBounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        
+                        // Carousel
+                        'carousel-scroll': 'carouselScroll 60s linear infinite',
+                        'carousel-scroll-slow': 'carouselScroll 80s linear infinite',
+                        'carousel-scroll-fast': 'carouselScroll 40s linear infinite'
+                    },
+                    keyframes: {
+                        // Carousel animations
+                        carouselScroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(calc(-50% - 1.5rem))' }
+                        },
+                        
+                        // Enhanced fade animations
+                        fadeIn: {
+                            'from': { opacity: 0 },
+                            'to': { opacity: 1 }
+                        },
+                        fadeInUp: {
+                            'from': { opacity: 0, transform: 'translateY(40px) scale(0.95)' },
+                            'to': { opacity: 1, transform: 'translateY(0) scale(1)' }
+                        },
+                        fadeInDown: {
+                            'from': { opacity: 0, transform: 'translateY(-40px) scale(0.95)' },
+                            'to': { opacity: 1, transform: 'translateY(0) scale(1)' }
+                        },
+                        fadeInLeft: {
+                            'from': { opacity: 0, transform: 'translateX(-60px) rotateY(10deg)' },
+                            'to': { opacity: 1, transform: 'translateX(0) rotateY(0)' }
+                        },
+                        fadeInRight: {
+                            'from': { opacity: 0, transform: 'translateX(60px) rotateY(-10deg)' },
+                            'to': { opacity: 1, transform: 'translateX(0) rotateY(0)' }
+                        },
+                        
+                        // Sliding animations
+                        slideUp: {
+                            'from': { opacity: 0, transform: 'translateY(40px)' },
+                            'to': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        slideDown: {
+                            'from': { opacity: 0, transform: 'translateY(-40px)' },
+                            'to': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        slideInLeft: {
+                            'from': { opacity: 0, transform: 'translateX(-60px) skewX(-5deg)' },
+                            'to': { opacity: 1, transform: 'translateX(0) skewX(0)' }
+                        },
+                        slideInRight: {
+                            'from': { opacity: 0, transform: 'translateX(60px) skewX(5deg)' },
+                            'to': { opacity: 1, transform: 'translateX(0) skewX(0)' }
+                        },
+                        
+                        // Floating animations
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg) scale(1)' },
+                            '50%': { transform: 'translateY(-20px) rotate(1deg) scale(1.02)' }
+                        },
+                        floatReverse: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg) scale(1)' },
+                            '50%': { transform: 'translateY(-15px) rotate(-1deg) scale(1.02)' }
+                        },
+                        
+                        // Breathing animations
+                        breath: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: 1 },
+                            '50%': { transform: 'scale(1.05)', opacity: 0.9 }
+                        },
+                        pulseGentle: {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.8, transform: 'scale(0.98)' }
+                        },
+                        
+                        // Wind animations
+                        windGust: {
+                            '0%, 100%': { transform: 'translateX(0px) skewX(0deg)' },
+                            '25%': { transform: 'translateX(-30px) skewX(-3deg)' },
+                            '50%': { transform: 'translateX(15px) skewX(2deg)' },
+                            '75%': { transform: 'translateX(-20px) skewX(-2deg)' }
+                        },
+                        windStrong: {
+                            '0%, 100%': { transform: 'translateX(0px) rotate(0deg)' },
+                            '25%': { transform: 'translateX(-50px) rotate(-1deg)' },
+                            '50%': { transform: 'translateX(25px) rotate(0.5deg)' },
+                            '75%': { transform: 'translateX(-35px) rotate(-0.5deg)' }
+                        },
+                        windWave: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(2deg)' }
+                        },
+                        compassSpin: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        },
+                        ribbonFlow: {
+                            '0%': { transform: 'translateX(-100vw) translateY(0px)' },
+                            '100%': { transform: 'translateX(100vw) translateY(20px)' }
+                        },
+                        flagWave: {
+                            '0%': { transform: 'skewX(-5deg) scaleX(0.95)' },
+                            '100%': { transform: 'skewX(5deg) scaleX(1.05)' }
+                        },
+                        
+                        // Element animations
+                        swayLeft: {
+                            '0%': { transform: 'rotate(-3deg) translateY(0px)' },
+                            '100%': { transform: 'rotate(3deg) translateY(-5px)' }
+                        },
+                        swayRight: {
+                            '0%': { transform: 'rotate(3deg) translateY(0px)' },
+                            '100%': { transform: 'rotate(-3deg) translateY(-5px)' }
+                        },
+                        swayGentle: {
+                            '0%, 100%': { transform: 'rotate(-1deg)' },
+                            '50%': { transform: 'rotate(1deg)' }
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-5px)' }
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+                            '50%': { opacity: 1, transform: 'scale(1.1)' }
+                        },
+                        orbit: {
+                            '0%': { transform: 'rotate(0deg) translateX(80px) rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg) translateX(80px) rotate(-360deg)' }
+                        },
+                        orbitReverse: {
+                            '0%': { transform: 'rotate(0deg) translateX(60px) rotate(0deg)' },
+                            '100%': { transform: 'rotate(-360deg) translateX(60px) rotate(360deg)' }
+                        },
+                        
+                        // Particle animations
+                        snowFall: {
+                            '0%': { transform: 'translateY(-100px) rotate(0deg)' },
+                            '100%': { transform: 'translateY(100vh) rotate(360deg)' }
+                        },
+                        rainFall: {
+                            '0%': { transform: 'translateY(-100px) translateX(0px)' },
+                            '100%': { transform: 'translateY(100vh) translateX(30px)' }
+                        },
+                        leafFall: {
+                            '0%': { transform: 'translateY(-100px) rotate(0deg) scale(1)' },
+                            '100%': { transform: 'translateY(100vh) rotate(360deg) scale(0.8)' }
+                        },
+                        dustDrift: {
+                            '0%': { transform: 'translateX(-100px) translateY(0px)' },
+                            '100%': { transform: 'translateX(100vw) translateY(100px)' }
+                        },
+                        pollenFloat: {
+                            '0%': { transform: 'translateY(-50px) rotate(0deg) scale(1)' },
+                            '100%': { transform: 'translateY(100vh) rotate(720deg) scale(1.2)' }
+                        },
+                        emberFloat: {
+                            '0%': { transform: 'translateY(-50px) translateX(0px) scale(1)' },
+                            '50%': { transform: 'translateY(50vh) translateX(50px) scale(1.5)' },
+                            '100%': { transform: 'translateY(100vh) translateX(-50px) scale(0.5)' }
+                        },
+                        fogDrift: {
+                            '0%': { transform: 'translateX(-100vw) translateY(0px)' },
+                            '100%': { transform: 'translateX(100vw) translateY(-50px)' }
+                        },
+                        
+                        // UI animations
+                        flipIn: {
+                            '0%': { transform: 'rotateY(90deg) scale(0.8)', opacity: 0 },
+                            '100%': { transform: 'rotateY(0deg) scale(1)', opacity: 1 }
+                        },
+                        rollIn: {
+                            '0%': { transform: 'translateX(-100%) rotate(-120deg) scale(0.5)', opacity: 0 },
+                            '100%': { transform: 'translateX(0) rotate(0deg) scale(1)', opacity: 1 }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: 0, transform: 'scale(0.5) rotate(-10deg)' },
+                            '100%': { opacity: 1, transform: 'scale(1) rotate(0deg)' }
+                        },
+                        scalePulse: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.1)' }
+                        },
+                        glowPulse: {
+                            '0%, 100%': { 
+                                'box-shadow': '0 0 20px rgba(255, 255, 255, 0.2)',
+                                'filter': 'brightness(1)'
+                            },
+                            '50%': { 
+                                'box-shadow': '0 0 40px rgba(255, 255, 255, 0.5)',
+                                'filter': 'brightness(1.2)'
+                            }
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0.8)', opacity: 1 },
+                            '100%': { transform: 'scale(2.5)', opacity: 0 }
+                        },
+                        liquidWave: {
+                            '0%, 100%': { 'clip-path': 'polygon(0% 45%, 100% 45%, 100% 55%, 0% 55%)' },
+                            '50%': { 'clip-path': 'polygon(0% 40%, 100% 40%, 100% 60%, 0% 60%)' }
+                        },
+                        needleSway: {
+                            '0%, 100%': { transform: 'rotate(-5deg)' },
+                            '50%': { transform: 'rotate(5deg)' }
+                        },
+                        
+                        // Weather effects
+                        lightningFlash: {
+                            '0%, 100%': { opacity: 0, filter: 'brightness(1)' },
+                            '10%, 90%': { opacity: 0.1, filter: 'brightness(1.5)' },
+                            '50%': { opacity: 1, filter: 'brightness(3)' }
+                        },
+                        thunderPulse: {
+                            '0%, 100%': { 
+                                'box-shadow': '0 0 0 0 rgba(100, 150, 255, 0.7)',
+                                'transform': 'scale(1)'
+                            },
+                            '50%': { 
+                                'box-shadow': '0 0 0 20px rgba(100, 150, 255, 0)',
+                                'transform': 'scale(1.05)'
+                            }
+                        },
+                        cloudSwirl: {
+                            '0%': { transform: 'translateX(-100px) rotate(0deg)' },
+                            '100%': { transform: 'translateX(100vw) rotate(360deg)' }
+                        },
+                        sunGlow: {
+                            '0%, 100%': { 
+                                'box-shadow': '0 0 60px rgba(255, 200, 50, 0.8)',
+                                'filter': 'brightness(1)'
+                            },
+                            '50%': { 
+                                'box-shadow': '0 0 100px rgba(255, 200, 50, 1)',
+                                'filter': 'brightness(1.3)'
+                            }
+                        },
+                        moonGlow: {
+                            '0%, 100%': { 
+                                'box-shadow': '0 0 40px rgba(200, 220, 255, 0.6)',
+                                'filter': 'brightness(1)'
+                            },
+                            '50%': { 
+                                'box-shadow': '0 0 80px rgba(200, 220, 255, 0.8)',
+                                'filter': 'brightness(1.2)'
+                            }
+                        },
+                        frostCrystallize: {
+                            '0%': { 
+                                'background-position': '0% 0%',
+                                'filter': 'brightness(1)'
+                            },
+                            '100%': { 
+                                'background-position': '100% 100%',
+                                'filter': 'brightness(1.2)'
+                            }
+                        },
+                        
+                        // Special effects
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        },
+                        rainbowShift: {
+                            '0%': { filter: 'hue-rotate(0deg)' },
+                            '100%': { filter: 'hue-rotate(360deg)' }
+                        },
+                        auroraWave: {
+                            '0%': { 
+                                'background-position': '0% 0%',
+                                'filter': 'hue-rotate(0deg)'
+                            },
+                            '100%': { 
+                                'background-position': '100% 100%',
+                                'filter': 'hue-rotate(60deg)'
+                            }
+                        },
+                        heatHaze: {
+                            '0%, 100%': { transform: 'translateY(0px) skewY(0deg)' },
+                            '50%': { transform: 'translateY(-5px) skewY(0.5deg)' }
+                        },
+                        blizzardGust: {
+                            '0%': { transform: 'translateX(-100vw) translateY(-100px)' },
+                            '100%': { transform: 'translateX(100vw) translateY(100px)' }
+                        },
+                        
+                        // Micro-interactions
+                        buttonPress: {
+                            '0%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(0.95)' },
+                            '100%': { transform: 'scale(1)' }
+                        },
+                        cardLift: {
+                            '0%': { transform: 'translateY(0px) rotateX(0deg) rotateY(0deg)' },
+                            '100%': { transform: 'translateY(-20px) rotateX(5deg) rotateY(5deg)' }
+                        },
+                        toggleBounce: {
+                            '0%': { transform: 'translateX(0px) scale(1)' },
+                            '50%': { transform: 'translateX(10px) scale(1.2)' },
+                            '100%': { transform: 'translateX(33px) scale(1)' }
+                        }
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                        'md': '12px',
+                        'lg': '20px',
+                        'xl': '30px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        /* Lottie Animation Containers */
+        .lottie-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .lottie-rain {
+            opacity: 0.6;
+        }
+
+        .lottie-snow {
+            opacity: 0.8;
+        }
+
+        .lottie-sun {
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+
+        /* Cinematic Background System */
+        .cinematic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, filter;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            background-size: cover;
+            transition: transform 0.3s linear;
+        }
+
+        /* Dynamic Weather Backgrounds */
+        .weather-bg-sunny {
+            background: linear-gradient(135deg, 
+                rgba(255, 200, 100, 0.8) 0%,
+                rgba(255, 150, 50, 0.6) 30%,
+                rgba(100, 150, 255, 0.4) 70%,
+                rgba(50, 100, 200, 0.2) 100%);
+            animation: rainbowShift 60s linear infinite, heatHaze 8s ease-in-out infinite;
+        }
+
+        .weather-bg-rainy {
+            background: linear-gradient(135deg, 
+                rgba(50, 100, 150, 0.9) 0%,
+                rgba(30, 70, 120, 0.7) 50%,
+                rgba(20, 50, 90, 0.5) 100%);
+            animation: thunderPulse 15s ease-in-out infinite;
+        }
+
+        .weather-bg-snowy {
+            background: linear-gradient(135deg, 
+                rgba(240, 240, 255, 0.9) 0%,
+                rgba(220, 230, 255, 0.7) 50%,
+                rgba(200, 220, 255, 0.5) 100%);
+            animation: frostCrystallize 30s linear infinite;
+        }
+
+        .weather-bg-stormy {
+            background: linear-gradient(135deg, 
+                rgba(20, 30, 50, 0.95) 0%,
+                rgba(30, 40, 70, 0.8) 50%,
+                rgba(40, 50, 90, 0.6) 100%);
+        }
+
+        .weather-bg-cloudy {
+            background: linear-gradient(135deg, 
+                rgba(180, 200, 220, 0.8) 0%,
+                rgba(140, 160, 180, 0.6) 50%,
+                rgba(100, 120, 140, 0.4) 100%);
+        }
+
+        .weather-bg-clear-night {
+            background: linear-gradient(135deg, 
+                rgba(15, 20, 40, 0.95) 0%,
+                rgba(30, 40, 80, 0.7) 50%,
+                rgba(50, 70, 120, 0.4) 100%);
+        }
+
+        /* Cinematic Glass Effects */
+        .cinematic-glass {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cinematic-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+        }
+
+        .cinematic-glass:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 40px 80px -20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ultra Premium Buttons */
+        .premium-btn {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%, 
+                rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 16px 32px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                transparent 100%);
+            transition: left 0.6s ease;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.2);
+            animation: none;
+        }
+
+        .premium-btn:hover::before {
+            left: 100%;
+        }
+
+        .premium-btn:active {
+            transform: translateY(-1px) scale(1.02);
+            animation: buttonPress 0.3s ease-out;
+        }
+
+        /* Wind Flow Lines */
+        .wind-flow-line {
+            position: absolute;
+            top: 0;
+            left: -100px;
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.6) 20%, 
+                rgba(255, 255, 255, 0.8) 50%, 
+                rgba(255, 255, 255, 0.6) 80%, 
+                transparent 100%);
+            filter: blur(1px);
+            animation: ribbonFlow 15s linear infinite;
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        /* Particle Systems */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Snow Particle Enhancement */
+        .snow-particle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: snowFall linear infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+
+        /* Rain Particle Enhancement */
+        .rain-particle {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(200, 220, 255, 0.7) 50%, 
+                rgba(150, 180, 220, 0.3) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 10px rgba(150, 180, 220, 0.5);
+            animation: rainFall linear infinite;
+        }
+
+        /* Cinematic Weather Icons */
+        .cinematic-weather-icon {
+            font-size: 160px;
+            filter: 
+                drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+            animation: 
+                float 6s ease-in-out infinite,
+                breath 4s ease-in-out infinite,
+                glowPulse 5s ease-in-out infinite;
+        }
+
+        /* Enhanced Loading Spinner */
+        .cinematic-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid transparent;
+            border-top: 4px solid #fff;
+            border-right: 4px solid #fff;
+            border-radius: 50%;
+            animation: 
+                compassSpin 1.5s linear infinite,
+                glowPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Splash Screen Enhancement */
+        .cinematic-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                #0f2027 0%, 
+                #203a43 50%, 
+                #2c5364 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .splash-logo {
+            font-size: 6rem;
+            margin-bottom: 3rem;
+            animation: 
+                float 4s ease-in-out infinite,
+                sunGlow 3s ease-in-out infinite,
+                orbit 30s linear infinite;
+            filter: drop-shadow(0 0 40px rgba(100, 150, 255, 0.7));
+        }
+
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: 
+                typewriter 4s steps(44, end),
+                blinkCaret 0.75s step-end infinite;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Temperature Display */
+        .temperature-display {
+            font-size: 9rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #a0c8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(100, 150, 255, 0.2);
+            animation: 
+                float 5s ease-in-out infinite,
+                breath 3s ease-in-out infinite,
+                scalePulse 10s ease-in-out infinite;
+        }
+
+        /* Hourly Forecast Carousel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: carousel-scroll 60s linear infinite;
+            will-change: transform;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Create gradient fade on edges */
+        .carousel-container::before,
+        .carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                transparent 100%);
+        }
+
+        .carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                transparent 100%);
+        }
+
+        /* Forecast Cards Enhancement */
+        .cinematic-forecast-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+            flex-shrink: 0;
+            will-change: transform;
+        }
+
+        .cinematic-forecast-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            transition: left 0.6s ease;
+        }
+
+        .cinematic-forecast-card:hover {
+            transform: 
+                translateY(-15px) 
+                rotateX(5deg) 
+                rotateY(5deg) 
+                scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(255, 255, 255, 0.1);
+            animation: cardLift 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation-play-state: running;
+        }
+
+        .cinematic-forecast-card:hover::before {
+            left: 100%;
+        }
+
+        /* Search Bar Enhancement */
+        .cinematic-search {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            color: white;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cinematic-search:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(100, 150, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            outline: none;
+        }
+
+        /* Lottie Simulator Cards */
+        .simulator-lottie {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Additional Effects */
+        .wind-affected {
+            animation: windGust 8s ease-in-out infinite;
+        }
+
+        .breathing-element {
+            animation: breath 4s ease-in-out infinite;
+        }
+
+        .pulsing-element {
+            animation: pulseGentle 3s ease-in-out infinite;
+        }
+
+        .swaying-element {
+            animation: swayGentle 5s ease-in-out infinite;
+        }
+
+        .orbiting-element {
+            animation: orbit 30s linear infinite;
+        }
+
+        .twinkling-element {
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        /* Typewriter Animation */
+        @keyframes typewriter {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blinkCaret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cinematic-weather-icon {
+                font-size: 120px;
+            }
+            
+            .temperature-display {
+                font-size: 6rem;
+            }
+            
+            .splash-logo {
+                font-size: 4rem;
+            }
+            
+            .typewriter-text {
+                font-size: 1.6rem;
+            }
+            
+            .carousel-track {
+                animation-duration: 80s;
+            }
+            
+            .simulator-lottie {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .cinematic-forecast-card {
+                min-width: 160px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cinematic-weather-icon {
+                font-size: 100px;
+            }
+            
+            .temperature-display {
+                font-size: 5rem;
+            }
+            
+            .splash-logo {
+                font-size: 3rem;
+            }
+            
+            .typewriter-text {
+                font-size: 1.3rem;
+            }
+            
+            .carousel-track {
+                animation-duration: 100s;
+            }
+            
+            .simulator-lottie {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .cinematic-forecast-card {
+                min-width: 140px;
+                padding: 16px;
+            }
+        }
+
+        /* Pause animation on hover for carousel */
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Prevent text selection during animation */
+        .carousel-track * {
+            user-select: none;
+        }
+
+        /* Hide scrollbar */
+        .carousel-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-white overflow-x-hidden">
+    <!-- Wind Flow Lines -->
+    <div id="windFlowLines"></div>
+    
+    <!-- Particle System -->
+    <div id="particleSystem" class="particle-system"></div>
+    
+    <!-- Lottie Weather Animations Container -->
+    <div id="lottieContainer"></div>
+    
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="cinematic-splash">
+        <div class="splash-logo">⛅</div>
+        <div class="typewriter-text">Atmos Premium Weather Experience</div>
+        <div class="cinematic-spinner"></div>
+        <div id="splashParticles"></div>
+    </div>
+
+    <!-- Main Weather App -->
+    <div id="weatherApp" class="hidden">
+        <!-- Cinematic Background -->
+        <div id="weatherBg" class="cinematic-bg weather-bg-sunny">
+            <div class="parallax-layer layer-1"></div>
+            <div class="parallax-layer layer-2"></div>
+            <div class="parallax-layer layer-3"></div>
+        </div>
+        
+        <!-- Weather Content -->
+        <div class="min-h-screen flex flex-col justify-between p-4 md:p-8">
+            <div class="w-full max-w-7xl mx-auto">
+                <!-- Header -->
+                <header class="flex justify-between items-center mb-12 md:mb-16 fade-in-up">
+                    <div>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-2 slide-in-left wind-affected">
+                            Atmos<span class="text-blue-300">.</span>
+                        </h1>
+                        <p class="text-white text-opacity-80 text-lg slide-in-left animation-delay-300 breathing-element">
+                            Cinematic Weather Experience
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 slide-in-right">
+                        <!-- Temperature Toggle -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-lg font-medium breathing-element">°C</span>
+                            <div id="tempToggle" class="relative w-20 h-10 rounded-full cinematic-glass cursor-pointer" 
+                                 onclick="toggleTemperatureUnit()" 
+                                 role="switch" 
+                                 aria-checked="true">
+                                <div class="temp-toggle-switch absolute top-1 left-1 w-8 h-8 bg-white rounded-full transition-all duration-300 flex items-center justify-center">
+                                    <i class="fas fa-thermometer-half text-gray-700 text-sm"></i>
+                                </div>
+                            </div>
+                            <span class="text-lg font-medium breathing-element">°F</span>
+                        </div>
+                        
+                        <!-- Theme Toggle -->
+                        <div class="theme-toggle cinematic-glass w-20 h-10 rounded-full cursor-pointer" 
+                             id="themeToggle" 
+                             onclick="toggleTheme()" 
+                             role="switch" 
+                             aria-checked="true">
+                            <div class="theme-toggle-switch absolute top-1 left-1 w-8 h-8 bg-white rounded-full transition-all duration-300 flex items-center justify-center">
+                                <i class="fas fa-moon text-gray-700 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Search Section -->
+                <section class="relative mb-12 md:mb-16 fade-in-up animation-delay-500">
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+                        <div class="relative flex-1">
+                            <input 
+                                type="text" 
+                                id="cityInput" 
+                                placeholder="Search for a city..." 
+                                class="cinematic-search w-full px-8 py-6 text-white placeholder-white placeholder-opacity-70 text-xl"
+                                onkeyup="showSuggestions(this.value)"
+                                onkeypress="if(event.key === 'Enter') searchWeather()"
+                            >
+                            <i class="fas fa-search absolute right-8 top-1/2 transform -translate-y-1/2 text-white text-opacity-70 text-xl"></i>
+                        </div>
+                        <button 
+                            onclick="searchWeather()" 
+                            class="premium-btn px-10 py-6 text-xl flex items-center justify-center gap-3"
+                        >
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                        </button>
+                        <button 
+                            onclick="getCurrentLocation()" 
+                            class="premium-btn px-8 py-6 text-xl"
+                            title="Use my location"
+                        >
+                            <i class="fas fa-location-arrow"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Loading State -->
+                <div id="loading" class="hidden text-center py-24 fade-in">
+                    <div class="cinematic-spinner mx-auto"></div>
+                    <p class="mt-8 text-2xl font-medium breathing-element">Loading Weather Data...</p>
+                    <p class="text-opacity-70 mt-3 text-lg">Fetching cinematic forecast experience</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error" class="hidden cinematic-glass rounded-3xl p-8 text-center mb-8 slide-up" role="alert">
+                    <p class="text-2xl"><i class="fas fa-exclamation-triangle mr-3 animate-pulse"></i><span id="errorMessage"></span></p>
+                    <button onclick="hideError()" class="premium-btn mt-6 px-8 py-3">
+                        <i class="fas fa-times mr-2"></i> Dismiss
+                    </button>
+                </div>
+
+                <!-- Weather Content -->
+                <div id="weatherContent" class="hidden">
+                    <!-- Current Weather Card -->
+                    <div class="cinematic-glass rounded-3xl p-10 md:p-12 mb-10 md:mb-12 slide-up">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-10">
+                            <div class="mb-8 lg:mb-0">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <h2 id="cityName" class="text-4xl md:text-5xl font-bold glowing-text scale-in"></h2>
+                                    <span id="currentTime" class="cinematic-glass px-4 py-2 rounded-full text-lg twinkling-element"></span>
+                                </div>
+                                <p id="currentDate" class="text-opacity-80 text-xl breathing-element"></p>
+                            </div>
+                            
+                            <!-- Wind Compass -->
+                            <div class="wind-compass cinematic-glass p-4">
+                                <div id="windDirection" class="wind-direction"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <i class="fas fa-compass text-2xl text-white opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <!-- Weather Display -->
+                            <div class="text-center md:text-left">
+                                <div class="flex flex-col md:flex-row items-center justify-center md:justify-start gap-8 mb-10">
+                                    <div id="weatherIcon" class="cinematic-weather-icon"></div>
+                                    <div>
+                                        <div class="flex items-baseline scale-in animation-delay-700">
+                                            <div id="temperature" class="temperature-display"></div>
+                                            <div class="text-5xl text-opacity-70 ml-2 breathing-element">°</div>
+                                        </div>
+                                        <p id="description" class="text-3xl capitalize mb-4 font-medium wind-affected"></p>
+                                        <p id="feelsLike" class="text-opacity-80 text-xl breathing-element"></p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Quick Stats -->
+                                <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+                                    <div class="cinematic-glass px-6 py-4 rounded-2xl flex items-center gap-3 wind-affected">
+                                        <i class="fas fa-wind text-2xl"></i>
+                                        <span id="windSpeed" class="text-xl font-semibold"></span>
+                                    </div>
+                                    <div class="cinematic-glass px-6 py-4 rounded-2xl flex items-center gap-3 breathing-element">
+                                        <i class="fas fa-tint text-2xl"></i>
+                                        <span id="humidity" class="text-xl font-semibold"></span>
+                                    </div>
+                                    <div class="cinematic-glass px-6 py-4 rounded-2xl flex items-center gap-3 swaying-element">
+                                        <i class="fas fa-compress-alt text-2xl"></i>
+                                        <span id="pressure" class="text-xl font-semibold"></span>
+                                    </div>
+                                    <div class="cinematic-glass px-6 py-4 rounded-2xl flex items-center gap-3 twinkling-element">
+                                        <i class="fas fa-eye text-2xl"></i>
+                                        <span id="visibility" class="text-xl font-semibold"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Stats -->
+                            <div class="grid grid-cols-2 gap-6">
+                                <!-- Wind Card -->
+                                <div class="cinematic-glass rounded-2xl p-6 text-center relative orbiting-element">
+                                    <div class="text-4xl mb-4">
+                                        <i class="fas fa-wind"></i>
+                                    </div>
+                                    <div id="windSpeedCard" class="text-3xl font-bold mb-2"></div>
+                                    <div class="text-opacity-80 text-lg">Wind Speed</div>
+                                    <div class="text-opacity-60 text-sm mt-2">Direction: <span id="windDirectionText"></span></div>
+                                </div>
+                                
+                                <!-- Humidity Card -->
+                                <div class="cinematic-glass rounded-2xl p-6 text-center relative breathing-element">
+                                    <div class="text-4xl mb-4">
+                                        <i class="fas fa-tint"></i>
+                                    </div>
+                                    <div id="humidityCard" class="text-3xl font-bold mb-2"></div>
+                                    <div class="text-opacity-80 text-lg">Humidity</div>
+                                </div>
+                                
+                                <!-- Pressure Card -->
+                                <div class="cinematic-glass rounded-2xl p-6 text-center relative swaying-element">
+                                    <div class="text-4xl mb-4">
+                                        <i class="fas fa-compress-alt"></i>
+                                    </div>
+                                    <div id="pressureCard" class="text-3xl font-bold mb-2"></div>
+                                    <div class="text-opacity-80 text-lg">Pressure</div>
+                                </div>
+                                
+                                <!-- UV Card -->
+                                <div class="cinematic-glass rounded-2xl p-6 text-center relative twinkling-element">
+                                    <div class="text-4xl mb-4">
+                                        <i class="fas fa-sun"></i>
+                                    </div>
+                                    <div id="uvIndex" class="text-3xl font-bold mb-2"></div>
+                                    <div class="text-opacity-80 text-lg">UV Index</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hourly Forecast with Moving Carousel -->
+                    <section class="cinematic-glass rounded-3xl p-8 mb-10 slide-up animation-delay-800">
+                        <h3 class="text-3xl font-bold mb-8 flex items-center gap-3 wind-affected">
+                            <i class="fas fa-clock text-2xl"></i> Hourly Forecast
+                        </h3>
+                        <div class="carousel-container">
+                            <div id="hourlyForecast" class="carousel-track">
+                                <!-- Hourly forecast items will be added here -->
+                            </div>
+                        </div>
+                        <p class="text-center mt-6 text-opacity-70 text-sm">Hover to pause scrolling • Scroll speed based on wind</p>
+                    </section>
+
+                    <!-- 5-Day Forecast -->
+                    <section class="cinematic-glass rounded-3xl p-8 mb-10 slide-up animation-delay-900">
+                        <h3 class="text-3xl font-bold mb-8 flex items-center gap-3 breathing-element">
+                            <i class="fas fa-calendar-alt text-2xl"></i> 5-Day Forecast
+                        </h3>
+                        <div id="forecast" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6"></div>
+                    </section>
+
+                    <!-- Weather Simulator with Lottie Animations -->
+                    <section class="cinematic-glass rounded-3xl p-8 mb-10 slide-up animation-delay-1000">
+                        <h3 class="text-3xl font-bold mb-8 flex items-center gap-3 swaying-element">
+                            <i class="fas fa-flask text-2xl"></i> Weather Simulator
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            <div class="cinematic-glass rounded-2xl p-8 text-center cursor-pointer hover:scale-105 transition-transform duration-500" onclick="simulateWeather('sunny')">
+                                <div class="simulator-lottie" id="sunnySimulator">
+                                    <!-- Sunny Lottie animation will be loaded here -->
+                                </div>
+                                <h4 class="font-bold text-xl mb-3">Sunny Day</h4>
+                                <p class="text-opacity-80">Experience bright sunshine</p>
+                            </div>
+                            <div class="cinematic-glass rounded-2xl p-8 text-center cursor-pointer hover:scale-105 transition-transform duration-500" onclick="simulateWeather('rainy')">
+                                <div class="simulator-lottie" id="rainySimulator">
+                                    <!-- Rainy Lottie animation will be loaded here -->
+                                </div>
+                                <h4 class="font-bold text-xl mb-3">Rainy Day</h4>
+                                <p class="text-opacity-80">Watch the rain fall</p>
+                            </div>
+                            <div class="cinematic-glass rounded-2xl p-8 text-center cursor-pointer hover:scale-105 transition-transform duration-500" onclick="simulateWeather('snowy')">
+                                <div class="simulator-lottie" id="snowySimulator">
+                                    <!-- Snowy Lottie animation will be loaded here -->
+                                </div>
+                                <h4 class="font-bold text-xl mb-3">Snowy Day</h4>
+                                <p class="text-opacity-80">See snowflakes falling</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="cinematic-glass mt-12 rounded-t-3xl p-8 slide-up animation-delay-1100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-6 md:mb-0 text-center md:text-left">
+                            <p class="text-2xl font-bold mb-2 breathing-element">Atmos Premium Experience</p>
+                            <p class="text-opacity-80 text-lg">Built with <i class="fas fa-heart text-red-400 animate-pulse"></i> by <span class="font-semibold">Aymen Boutaraa</span></p>
+                            <p class="text-opacity-60 mt-2">Cinematic weather visualization showcase</p>
+                        </div>
+                        <div class="flex gap-4">
+                        <button onclick="showTrivia()" class="premium-btn px-6 py-3">
+                                <i class="fas fa-lightbulb"></i>
+                                <span class="ml-2">Trivia</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8 text-opacity-60">
+                        <p id="lastUpdated" class="text-lg"></p>
+                        <p class="mt-2">Powered by <a href="https://www.weatherapi.com/" class="underline hover:text-opacity-100" target="_blank">WeatherAPI.com</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Trivia Popup -->
+    <div id="triviaPopup" class="hidden fixed inset-0 flex items-center justify-center z-50 p-4">
+        <div class="cinematic-glass rounded-3xl p-10 max-w-2xl w-full">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-3xl font-bold"><i class="fas fa-lightbulb mr-3 twinkling-element"></i>Weather Trivia</h3>
+                <button onclick="hideTrivia()" class="text-3xl hover:scale-110 transition-transform">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="triviaContent" class="mb-8">
+                <p class="text-2xl mb-6">Did you know?</p>
+                <p class="text-opacity-90 text-xl leading-relaxed" id="triviaFact"></p>
+            </div>
+            <button onclick="nextTrivia()" class="premium-btn w-full py-4 text-xl">
+                Show Another Fact <i class="fas fa-arrow-right ml-3"></i>
+            </button>
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-70 -z-10" onclick="hideTrivia()"></div>
+    </div>
+
+    <script defer>
+        const _0x53ee5f=_0x510c;(function(_0x5a98c9,_0x247a2b){const _0x40ad92=_0x510c,_0x1eaa92=_0x5a98c9();while(!![]){try{const _0x45cb3f=-parseInt(_0x40ad92(0x14b))/0x1+parseInt(_0x40ad92(0x6f))/0x2*(-parseInt(_0x40ad92(0x83))/0x3)+parseInt(_0x40ad92(0xe6))/0x4+-parseInt(_0x40ad92(0x131))/0x5+parseInt(_0x40ad92(0x15f))/0x6*(parseInt(_0x40ad92(0xe3))/0x7)+parseInt(_0x40ad92(0x137))/0x8+-parseInt(_0x40ad92(0xd9))/0x9*(-parseInt(_0x40ad92(0x140))/0xa);if(_0x45cb3f===_0x247a2b)break;else _0x1eaa92['push'](_0x1eaa92['shift']());}catch(_0x22d613){_0x1eaa92['push'](_0x1eaa92['shift']());}}}(_0x3a62,0x7aa6f));const API_KEY=_0x53ee5f(0xe4),API_BASE=_0x53ee5f(0x15c);let isCelsius=!![],isDarkMode=!![],lastWeatherData=null,searchTimeout=null,currentTriviaIndex=0x0,featuredCities=[_0x53ee5f(0xba),_0x53ee5f(0x164),_0x53ee5f(0x8f),_0x53ee5f(0x153),_0x53ee5f(0x166),_0x53ee5f(0xce)],windSpeed=0x0,windDirection=0x0,currentLottieAnimation=null;const weatherTrivia=[_0x53ee5f(0x104),'Lightning\x20strikes\x20the\x20Earth\x20about\x20100\x20times\x20every\x20second.','Snowflakes\x20falling\x20at\x202-4\x20mph\x20can\x20take\x20about\x20an\x20hour\x20to\x20reach\x20the\x20ground.',_0x53ee5f(0xe7),_0x53ee5f(0x117),_0x53ee5f(0x132),_0x53ee5f(0x75),_0x53ee5f(0xc6),_0x53ee5f(0xd0),'The\x20largest\x20snowflake\x20ever\x20recorded\x20was\x2015\x20inches\x20wide\x20and\x208\x20inches\x20thick.'],fontAwesomeIcons={'Sunny':'fas\x20fa-sun','Clear':_0x53ee5f(0x10e),'Partly\x20cloudy':'fas\x20fa-cloud-sun','Cloudy':_0x53ee5f(0xc7),'Overcast':_0x53ee5f(0xc7),'Mist':_0x53ee5f(0xb3),'Fog':_0x53ee5f(0xb3),'Patchy\x20rain':_0x53ee5f(0x9e),'Light\x20rain':_0x53ee5f(0x9e),'Moderate\x20rain':_0x53ee5f(0x155),'Heavy\x20rain':_0x53ee5f(0x77),'Snow':_0x53ee5f(0x128),'Heavy\x20snow':'fas\x20fa-snowflake','Thunderstorm':_0x53ee5f(0x111)},LOTTIE_ANIMATIONS={'rain':_0x53ee5f(0x107),'snow':'https://lottie.host/dd6f892d-0b4c-4c5b-b9e1-dff93183bb22/382A49Jjh2.json','sun':'https://lottie.host/8bea80a8-d6d5-4181-bdc0-344a6ff3016c/CCd3gfizaM.json'};function initSplashScreen(){const _0x74ffb7=_0x53ee5f,_0x20194b=document['getElementById'](_0x74ffb7(0x152)),_0x21190b=document[_0x74ffb7(0x8d)](_0x74ffb7(0x9f));for(let _0x35e087=0x0;_0x35e087<0x50;_0x35e087++){const _0x17707b=document[_0x74ffb7(0x12f)](_0x74ffb7(0x11d));_0x17707b[_0x74ffb7(0xf1)]=_0x74ffb7(0xb4),_0x17707b[_0x74ffb7(0x9a)]['left']=Math[_0x74ffb7(0xc0)]()*0x64+'%',_0x17707b[_0x74ffb7(0x9a)][_0x74ffb7(0xec)]=Math['random']()*0x64+'%';const _0x31ae24=[_0x74ffb7(0xc9),'dust','pollen'],_0x31d616=_0x31ae24[Math[_0x74ffb7(0xfe)](Math[_0x74ffb7(0xc0)]()*_0x31ae24['length'])];switch(_0x31d616){case _0x74ffb7(0xc9):_0x17707b[_0x74ffb7(0xfd)][_0x74ffb7(0x158)](_0x74ffb7(0x7a)),_0x17707b[_0x74ffb7(0x11a)]='❄',_0x17707b['style'][_0x74ffb7(0xcb)]=Math[_0x74ffb7(0xc0)]()*0x1+0x1+'em',_0x17707b['style'][_0x74ffb7(0x109)]=Math[_0x74ffb7(0xc0)]()*0xa+0xf+'s',_0x17707b[_0x74ffb7(0x9a)][_0x74ffb7(0xf4)]=Math[_0x74ffb7(0xc0)]()*0.8+0.2;break;case'dust':_0x17707b[_0x74ffb7(0xfd)][_0x74ffb7(0x158)](_0x74ffb7(0x89)),_0x17707b['style']['width']=_0x17707b[_0x74ffb7(0x9a)]['height']=Math[_0x74ffb7(0xc0)]()*0x6+0x3+'px',_0x17707b[_0x74ffb7(0x9a)][_0x74ffb7(0x109)]=Math[_0x74ffb7(0xc0)]()*0x14+0x14+'s',_0x17707b[_0x74ffb7(0x9a)]['opacity']=Math[_0x74ffb7(0xc0)]()*0.4+0.1;break;case _0x74ffb7(0x92):_0x17707b[_0x74ffb7(0xfd)][_0x74ffb7(0x158)](_0x74ffb7(0x79)),_0x17707b['style'][_0x74ffb7(0x10d)]=_0x17707b[_0x74ffb7(0x9a)][_0x74ffb7(0x8b)]=Math[_0x74ffb7(0xc0)]()*0x8+0x4+'px',_0x17707b[_0x74ffb7(0x9a)]['animationDuration']=Math['random']()*0x19+0x14+'s',_0x17707b[_0x74ffb7(0x9a)]['opacity']=Math[_0x74ffb7(0xc0)]()*0.5+0.3;break;}_0x17707b[_0x74ffb7(0x9a)][_0x74ffb7(0xf5)]=Math[_0x74ffb7(0xc0)]()*0x5+'s',_0x21190b[_0x74ffb7(0x160)](_0x17707b);}setTimeout(()=>{const _0x177d13=_0x74ffb7;_0x20194b[_0x177d13(0x9a)][_0x177d13(0xf4)]='0',_0x20194b[_0x177d13(0x9a)]['transform']=_0x177d13(0xa9),setTimeout(()=>{const _0x4960f2=_0x177d13;_0x20194b[_0x4960f2(0x9a)][_0x4960f2(0xbf)]=_0x4960f2(0x156),document[_0x4960f2(0x8d)](_0x4960f2(0x7e))['classList'][_0x4960f2(0xa1)](_0x4960f2(0x149)),initWindFlowLines(),initParticleSystem(),setupParallax(),loadFeaturedCities(),initWeatherTrivia(),loadLottieAnimations(),getWeather(_0x4960f2(0x162));},0x3e8);},0x1194);}function loadLottieAnimations(){const _0x444cb7=_0x53ee5f,_0x5a83a4=document[_0x444cb7(0x8d)](_0x444cb7(0x129)),_0x5da7e9=document[_0x444cb7(0x8d)](_0x444cb7(0x138)),_0x4d5e6b=document[_0x444cb7(0x8d)](_0x444cb7(0xc2));_0x5a83a4&&(_0x5a83a4[_0x444cb7(0x11a)]=_0x444cb7(0xed)+LOTTIE_ANIMATIONS['sun']+_0x444cb7(0xcc)),_0x5da7e9&&(_0x5da7e9[_0x444cb7(0x11a)]=_0x444cb7(0xed)+LOTTIE_ANIMATIONS[_0x444cb7(0x161)]+_0x444cb7(0xcc)),_0x4d5e6b&&(_0x4d5e6b[_0x444cb7(0x11a)]=_0x444cb7(0xed)+LOTTIE_ANIMATIONS[_0x444cb7(0xc9)]+_0x444cb7(0xcc));}function initWindFlowLines(){const _0x3255cd=_0x53ee5f,_0x502691=document[_0x3255cd(0x8d)](_0x3255cd(0x15a));_0x502691[_0x3255cd(0x11a)]='';for(let _0x388ddb=0x0;_0x388ddb<0xf;_0x388ddb++){const _0x429117=document[_0x3255cd(0x12f)](_0x3255cd(0x11d));_0x429117[_0x3255cd(0xf1)]='wind-flow-line',_0x429117['style'][_0x3255cd(0xec)]=Math[_0x3255cd(0xc0)]()*0x64+'%',_0x429117['style'][_0x3255cd(0xf4)]=Math['random']()*0.3+0.1,_0x429117[_0x3255cd(0x9a)][_0x3255cd(0x109)]=Math[_0x3255cd(0xc0)]()*0xa+0xa+'s',_0x429117[_0x3255cd(0x9a)][_0x3255cd(0xf5)]=Math[_0x3255cd(0xc0)]()*0x5+'s',_0x429117[_0x3255cd(0x9a)]['width']=Math['random']()*0xc8+0xc8+'px',_0x502691[_0x3255cd(0x160)](_0x429117);}}function initParticleSystem(){const _0x306dd2=_0x53ee5f,_0x4db1a1=document[_0x306dd2(0x8d)]('particleSystem');_0x4db1a1[_0x306dd2(0x11a)]='';for(let _0xb0fab4=0x0;_0xb0fab4<0x32;_0xb0fab4++){createAtmosphericParticle(_0x4db1a1);}}function createAtmosphericParticle(_0x5efb49){const _0x28b076=_0x53ee5f,_0x4e3f44=document[_0x28b076(0x12f)](_0x28b076(0x11d));_0x4e3f44['className']=_0x28b076(0xb4),_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0xa3)]=Math[_0x28b076(0xc0)]()*0x64+'%',_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0xec)]=Math['random']()*0x64+'%';const _0x4dcb70=[_0x28b076(0x12d),_0x28b076(0x92)],_0x3d213f=_0x4dcb70[Math['floor'](Math[_0x28b076(0xc0)]()*_0x4dcb70[_0x28b076(0x11f)])];switch(_0x3d213f){case'dust':_0x4e3f44[_0x28b076(0xfd)]['add'](_0x28b076(0x89)),_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0x10d)]=_0x4e3f44[_0x28b076(0x9a)]['height']=Math[_0x28b076(0xc0)]()*0x5+0x2+'px',_0x4e3f44['style'][_0x28b076(0x109)]=Math[_0x28b076(0xc0)]()*0x1e+0x14+'s',_0x4e3f44['style'][_0x28b076(0xf4)]=Math[_0x28b076(0xc0)]()*0.3+0.1;break;case _0x28b076(0x92):_0x4e3f44[_0x28b076(0xfd)][_0x28b076(0x158)](_0x28b076(0x79)),_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0x10d)]=_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0x8b)]=Math[_0x28b076(0xc0)]()*0x7+0x3+'px',_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0x109)]=Math['random']()*0x19+0x19+'s',_0x4e3f44[_0x28b076(0x9a)][_0x28b076(0xf4)]=Math[_0x28b076(0xc0)]()*0.4+0.2;break;}_0x4e3f44[_0x28b076(0x9a)]['animationDelay']=Math[_0x28b076(0xc0)]()*0xa+'s',_0x5efb49[_0x28b076(0x160)](_0x4e3f44);}function setupParallax(){const _0x5614e5=_0x53ee5f;let _0x442cbb=0x0,_0x1ab26a=0x0;document[_0x5614e5(0x12e)]('mousemove',_0x4fe6eb=>{const _0x5a3e74=_0x5614e5;_0x442cbb=_0x4fe6eb[_0x5a3e74(0x82)]/window[_0x5a3e74(0x13d)],_0x1ab26a=_0x4fe6eb[_0x5a3e74(0x125)]/window[_0x5a3e74(0x13f)];const _0x445b2f=document[_0x5a3e74(0x13e)](_0x5a3e74(0x116));_0x445b2f['forEach']((_0x3cc69b,_0x44438c)=>{const _0x7e2021=_0x5a3e74,_0x2baa75=(_0x44438c+0x1)*0.03,_0x4f267=(_0x442cbb-0.5)*0x64*_0x2baa75,_0x513deb=(_0x1ab26a-0.5)*0x64*_0x2baa75;_0x3cc69b['style'][_0x7e2021(0xbb)]=_0x7e2021(0x6d)+_0x4f267+_0x7e2021(0xb8)+_0x513deb+_0x7e2021(0x139);});});}function getWeatherIcon(_0xd2e855,_0x5266f4=!![]){const _0x48ddf6=_0x53ee5f;if(_0x5266f4&&fontAwesomeIcons[_0xd2e855])return _0x48ddf6(0x11e)+fontAwesomeIcons[_0xd2e855]+_0x48ddf6(0x144);const _0x23b260={'Sunny':'☀️','Clear':'🌙','Partly\x20cloudy':'⛅','Cloudy':'☁️','Overcast':'☁️','Mist':_0x48ddf6(0xcf),'Rain':'🌧️','Snow':'❄️','Thunderstorm':'⛈️'};for(const _0x40e1ce in _0x23b260){if(_0xd2e855[_0x48ddf6(0x15b)](_0x40e1ce))return _0x23b260[_0x40e1ce];}return _0x48ddf6(0xe9);}function getBackgroundClass(_0xfddcec,_0x1e5777){const _0x2e0847=_0x53ee5f,_0x210e47=_0xfddcec[_0x2e0847(0xab)]();if(_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0x14c)))return _0x2e0847(0xea);if(_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0xc9))||_0x210e47['includes'](_0x2e0847(0xc5)))return _0x2e0847(0x133);if(_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0x161))||_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0x101)))return'weather-bg-rainy';if(_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0xf6))||_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0x130)))return'weather-bg-cloudy';if(_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0xe5))||_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0x126)))return _0x2e0847(0xf7);if(_0x210e47[_0x2e0847(0x15b)]('clear')||_0x210e47[_0x2e0847(0x15b)](_0x2e0847(0xc1)))return _0x1e5777?_0x2e0847(0x9d):'weather-bg-clear-night';return _0x1e5777?'weather-bg-sunny':_0x2e0847(0x12b);}function createLottieAnimation(_0xed24bb){const _0x197ae8=_0x53ee5f,_0x39e82d=document[_0x197ae8(0x8d)](_0x197ae8(0x13a));_0x39e82d['innerHTML']='';currentLottieAnimation&&(currentLottieAnimation[_0x197ae8(0x106)](),currentLottieAnimation=null);const _0x5ea825=_0xed24bb['toLowerCase']();let _0x5240a3='',_0xb8e210='';if(_0x5ea825[_0x197ae8(0x15b)](_0x197ae8(0x161))||_0x5ea825['includes'](_0x197ae8(0x101)))_0x5240a3=LOTTIE_ANIMATIONS[_0x197ae8(0x161)],_0xb8e210='lottie-rain';else{if(_0x5ea825[_0x197ae8(0x15b)](_0x197ae8(0xc9))||_0x5ea825['includes'](_0x197ae8(0xc5)))_0x5240a3=LOTTIE_ANIMATIONS[_0x197ae8(0xc9)],_0xb8e210=_0x197ae8(0x8e);else(_0x5ea825[_0x197ae8(0x15b)](_0x197ae8(0x100))||_0x5ea825[_0x197ae8(0x15b)](_0x197ae8(0xc1)))&&(_0x5240a3=LOTTIE_ANIMATIONS[_0x197ae8(0x7c)],_0xb8e210=_0x197ae8(0x78));}if(_0x5240a3){const _0x3457f5=document['createElement']('lottie-player');_0x3457f5[_0x197ae8(0x136)]=_0x5240a3,_0x3457f5[_0x197ae8(0x120)]='transparent',_0x3457f5['speed']='1',_0x3457f5[_0x197ae8(0xcd)]=!![],_0x3457f5[_0x197ae8(0x154)]=!![],_0x3457f5[_0x197ae8(0xf1)]=_0x197ae8(0xaf)+_0xb8e210,_0x3457f5['style'][_0x197ae8(0x10d)]=_0x197ae8(0xf3),_0x3457f5[_0x197ae8(0x9a)][_0x197ae8(0x8b)]=_0x197ae8(0xf3),_0x39e82d['appendChild'](_0x3457f5),currentLottieAnimation=_0x3457f5;}}function createWeatherParticles(_0x1f7820){const _0x2ad3e2=_0x53ee5f,_0x307483=document[_0x2ad3e2(0x8d)](_0x2ad3e2(0x91));_0x307483[_0x2ad3e2(0x11a)]='';for(let _0x512e78=0x0;_0x512e78<0x1e;_0x512e78++){createAtmosphericParticle(_0x307483);}const _0x1cf94b=_0x1f7820['toLowerCase']();if(_0x1cf94b['includes']('rain'))createRainParticles(_0x307483,0xc8),updateWindFlowLines(0xf,0.5);else{if(_0x1cf94b[_0x2ad3e2(0x15b)](_0x2ad3e2(0xc9)))createSnowParticles(_0x307483,0x96),updateWindFlowLines(0x14,0.3);else{if(_0x1cf94b['includes'](_0x2ad3e2(0x100))||_0x1cf94b[_0x2ad3e2(0x15b)]('sunny'))createPollenParticles(_0x307483,0x64),updateWindFlowLines(0xa,0.8);else{if(_0x1cf94b['includes'](_0x2ad3e2(0x14c)))createRainParticles(_0x307483,0x12c),updateWindFlowLines(0x8,0.9);else(_0x1cf94b[_0x2ad3e2(0x15b)](_0x2ad3e2(0x130))||_0x1cf94b[_0x2ad3e2(0x15b)](_0x2ad3e2(0xf6)))&&(createFogParticles(_0x307483,0x8),updateWindFlowLines(0x19,0.2));}}}}function createRainParticles(_0x229c79,_0x4936a4){const _0x110d2a=_0x53ee5f;for(let _0x507f2b=0x0;_0x507f2b<_0x4936a4;_0x507f2b++){const _0x4032df=document['createElement'](_0x110d2a(0x11d));_0x4032df[_0x110d2a(0xf1)]='rain-particle\x20particle',_0x4032df['style']['left']=Math[_0x110d2a(0xc0)]()*0x64+'%',_0x4032df[_0x110d2a(0x9a)][_0x110d2a(0x109)]=Math[_0x110d2a(0xc0)]()*0.8+0.7+'s',_0x4032df[_0x110d2a(0x9a)][_0x110d2a(0xf5)]=Math[_0x110d2a(0xc0)]()*0x2+'s',_0x4032df[_0x110d2a(0x9a)][_0x110d2a(0xf4)]=Math['random']()*0.7+0.3,_0x4032df[_0x110d2a(0x9a)][_0x110d2a(0x8b)]=Math[_0x110d2a(0xc0)]()*0x14+0x1e+'px',_0x4032df['style'][_0x110d2a(0x10d)]=Math[_0x110d2a(0xc0)]()*0.8+0.5+'px',_0x229c79[_0x110d2a(0x160)](_0x4032df);}}function createSnowParticles(_0x53066d,_0x562a24){const _0x1ede9c=_0x53ee5f;for(let _0x4cc024=0x0;_0x4cc024<_0x562a24;_0x4cc024++){const _0x323e9d=document[_0x1ede9c(0x12f)]('div');_0x323e9d[_0x1ede9c(0xf1)]=_0x1ede9c(0xb7),_0x323e9d['innerHTML']=Math[_0x1ede9c(0xc0)]()>0.5?'❄':'❅',_0x323e9d[_0x1ede9c(0x9a)][_0x1ede9c(0xa3)]=Math['random']()*0x64+'%',_0x323e9d[_0x1ede9c(0x9a)][_0x1ede9c(0x109)]=Math[_0x1ede9c(0xc0)]()*0xf+0x14+'s',_0x323e9d[_0x1ede9c(0x9a)]['animationDelay']=Math[_0x1ede9c(0xc0)]()*0xa+'s',_0x323e9d['style'][_0x1ede9c(0xf4)]=Math[_0x1ede9c(0xc0)]()*0.9+0.1,_0x323e9d['style'][_0x1ede9c(0xcb)]=Math[_0x1ede9c(0xc0)]()*1.5+0x1+'em',_0x323e9d[_0x1ede9c(0x9a)][_0x1ede9c(0x142)]='blur('+Math[_0x1ede9c(0xc0)]()*0.5+_0x1ede9c(0x139),_0x53066d['appendChild'](_0x323e9d);}}function createPollenParticles(_0xca70ad,_0x41af1b){const _0x161042=_0x53ee5f;for(let _0xed620c=0x0;_0xed620c<_0x41af1b;_0xed620c++){const _0xa5192=document[_0x161042(0x12f)](_0x161042(0x11d));_0xa5192[_0x161042(0xf1)]='pollen-particle\x20particle',_0xa5192[_0x161042(0x9a)][_0x161042(0xa3)]=Math[_0x161042(0xc0)]()*0x64+'%',_0xa5192[_0x161042(0x9a)][_0x161042(0x109)]=Math[_0x161042(0xc0)]()*0x19+0x19+'s',_0xa5192[_0x161042(0x9a)]['animationDelay']=Math[_0x161042(0xc0)]()*0xf+'s',_0xa5192[_0x161042(0x9a)][_0x161042(0xf4)]=Math[_0x161042(0xc0)]()*0.4+0.2,_0xa5192['style']['width']=_0xa5192[_0x161042(0x9a)][_0x161042(0x8b)]=Math[_0x161042(0xc0)]()*0x8+0x4+'px',_0xca70ad[_0x161042(0x160)](_0xa5192);}}function createFogParticles(_0x5cf8d3,_0x208f76){const _0x392cb2=_0x53ee5f;for(let _0x1707dc=0x0;_0x1707dc<_0x208f76;_0x1707dc++){const _0x2a9552=document['createElement'](_0x392cb2(0x11d));_0x2a9552[_0x392cb2(0xf1)]=_0x392cb2(0x71),_0x2a9552[_0x392cb2(0x9a)][_0x392cb2(0xec)]=Math[_0x392cb2(0xc0)]()*0x64+'%',_0x2a9552[_0x392cb2(0x9a)][_0x392cb2(0x109)]=Math[_0x392cb2(0xc0)]()*0x28+0x1e+'s',_0x2a9552[_0x392cb2(0x9a)]['animationDelay']=Math[_0x392cb2(0xc0)]()*0x14+'s',_0x2a9552[_0x392cb2(0x9a)]['opacity']=Math[_0x392cb2(0xc0)]()*0.15+0.05,_0x2a9552[_0x392cb2(0x9a)][_0x392cb2(0x10d)]=Math['random']()*0x12c+0xc8+'px',_0x2a9552[_0x392cb2(0x9a)][_0x392cb2(0x8b)]=Math['random']()*0x96+0x64+'px',_0x5cf8d3[_0x392cb2(0x160)](_0x2a9552);}}function updateWindFlowLines(_0x54a1a8,_0x5845b7){const _0x140567=_0x53ee5f,_0x1fa694=document[_0x140567(0x13e)](_0x140567(0x70));_0x1fa694[_0x140567(0xf8)](_0x1887bf=>{const _0x75ffc0=_0x140567;_0x1887bf[_0x75ffc0(0x9a)][_0x75ffc0(0x109)]=_0x54a1a8+'s',_0x1887bf[_0x75ffc0(0x9a)]['opacity']=_0x5845b7;});}function initWeatherTrivia(){const _0x4a2f8e=_0x53ee5f;currentTriviaIndex=Math['floor'](Math[_0x4a2f8e(0xc0)]()*weatherTrivia['length']);}function _0x510c(_0x23bed7,_0x22d586){_0x23bed7=_0x23bed7-0x6c;const _0x3a6210=_0x3a62();let _0x510c53=_0x3a6210[_0x23bed7];return _0x510c53;}function simulateWeather(_0x27b643){const _0x395a82=_0x53ee5f,_0x5162c3=document[_0x395a82(0x8d)]('temperature'),_0x33008e=document[_0x395a82(0x8d)](_0x395a82(0x145)),_0x175a2e=document[_0x395a82(0x8d)]('weatherIcon'),_0x4e227f=document[_0x395a82(0x8d)](_0x395a82(0x7d));_0x5162c3['style'][_0x395a82(0xfb)]='scalePulse\x200.5s\x20ease-out';switch(_0x27b643){case _0x395a82(0xc1):_0x33008e['textContent']=_0x395a82(0x123),_0x175a2e['className']=_0x395a82(0xaa),_0x175a2e[_0x395a82(0x11a)]=_0x395a82(0x86),_0x5162c3['textContent']=_0x395a82(0xb2),_0x4e227f[_0x395a82(0xf1)]='cinematic-bg\x20weather-bg-sunny',createLottieAnimation(_0x395a82(0xda)),createWeatherParticles(_0x395a82(0xda));break;case _0x395a82(0xde):_0x33008e[_0x395a82(0x151)]=_0x395a82(0x10b),_0x175a2e[_0x395a82(0xf1)]='cinematic-weather-icon',_0x175a2e[_0x395a82(0x11a)]='<i\x20class=\x22fas\x20fa-cloud-rain\x22></i>',_0x5162c3[_0x395a82(0x151)]=_0x395a82(0xd3),_0x4e227f[_0x395a82(0xf1)]=_0x395a82(0xee),createLottieAnimation('Rain'),createWeatherParticles(_0x395a82(0xdf));break;case'snowy':_0x33008e[_0x395a82(0x151)]='Snowy\x20Simulation',_0x175a2e[_0x395a82(0xf1)]=_0x395a82(0xaa),_0x175a2e[_0x395a82(0x11a)]=_0x395a82(0xa4),_0x5162c3[_0x395a82(0x151)]=_0x395a82(0x9b),_0x4e227f[_0x395a82(0xf1)]=_0x395a82(0x121),createLottieAnimation('Snow'),createWeatherParticles(_0x395a82(0xa5));break;}setTimeout(()=>{const _0xd76264=_0x395a82;_0x5162c3[_0xd76264(0x9a)][_0xd76264(0xfb)]='';},0x1f4),showError(_0x395a82(0x102),![]);}async function searchWeather(){const _0x5da8c0=_0x53ee5f,_0x5bc9d5=document[_0x5da8c0(0x8d)]('cityInput')[_0x5da8c0(0x112)][_0x5da8c0(0x105)]();if(!_0x5bc9d5){showError(_0x5da8c0(0x114));return;}document[_0x5da8c0(0x8d)](_0x5da8c0(0xfc))?.[_0x5da8c0(0xfd)][_0x5da8c0(0x158)]('hidden'),await getWeather(_0x5bc9d5);}async function getCurrentLocation(){const _0x52034f=_0x53ee5f;navigator[_0x52034f(0x10f)]?(document[_0x52034f(0x8d)](_0x52034f(0x141))[_0x52034f(0xfd)]['remove'](_0x52034f(0x149)),navigator['geolocation']['getCurrentPosition'](async _0x3c7686=>{const _0x1acf70=_0x52034f,_0x17aebe=_0x3c7686[_0x1acf70(0x14e)]['latitude'],_0x8a0679=_0x3c7686[_0x1acf70(0x14e)][_0x1acf70(0xb1)];await getWeather(_0x17aebe+','+_0x8a0679);},_0x5154ec=>{const _0x3867d0=_0x52034f;document[_0x3867d0(0x8d)](_0x3867d0(0x141))[_0x3867d0(0xfd)][_0x3867d0(0x158)]('hidden'),showError('Unable\x20to\x20get\x20your\x20location.\x20Please\x20enter\x20a\x20city\x20name.');})):showError(_0x52034f(0x6e));}async function getWeather(_0x94e60a){const _0x3889ee=_0x53ee5f;hideError(),document[_0x3889ee(0x8d)](_0x3889ee(0x141))[_0x3889ee(0xfd)][_0x3889ee(0xa1)]('hidden'),document[_0x3889ee(0x8d)](_0x3889ee(0x76))['classList'][_0x3889ee(0x158)](_0x3889ee(0x149));try{const _0x5b536a=await fetch(API_BASE+_0x3889ee(0x15e)+API_KEY+_0x3889ee(0x87)+_0x94e60a+_0x3889ee(0x93));if(!_0x5b536a['ok'])throw new Error(_0x3889ee(0x72));const _0x2e4a8f=await _0x5b536a[_0x3889ee(0x135)]();lastWeatherData=_0x2e4a8f,displayWeather(_0x2e4a8f),setTimeout(()=>{const _0x186094=_0x3889ee;lastWeatherData?.[_0x186094(0x16a)][_0x186094(0x143)]===_0x2e4a8f[_0x186094(0x16a)][_0x186094(0x143)]&&getWeather(_0x94e60a);},0x1e*0x3c*0x3e8);}catch(_0x2f5161){showError(_0x2f5161[_0x3889ee(0x74)]||'Failed\x20to\x20fetch\x20weather\x20data.\x20Please\x20try\x20again.');}finally{document['getElementById'](_0x3889ee(0x141))[_0x3889ee(0xfd)][_0x3889ee(0x158)](_0x3889ee(0x149));}}function displayWeather(_0x2de0ab){const _0xf8f7c2=_0x53ee5f,_0x4690f3=_0x2de0ab[_0xf8f7c2(0xf0)],_0x522e28=_0x2de0ab['location'],_0x4c21b9=_0x2de0ab[_0xf8f7c2(0xdc)][_0xf8f7c2(0xca)],_0x26e755=new Date(_0x522e28[_0xf8f7c2(0xb9)]);windSpeed=_0x4690f3['wind_kph'],windDirection=_0x4690f3[_0xf8f7c2(0x124)];const _0x80ff16=getBackgroundClass(_0x4690f3[_0xf8f7c2(0xb5)][_0xf8f7c2(0x85)],_0x4690f3['is_day']),_0x878937=document['getElementById']('weatherBg');_0x878937[_0xf8f7c2(0xf1)]=_0xf8f7c2(0xae)+_0x80ff16,createLottieAnimation(_0x4690f3['condition'][_0xf8f7c2(0x85)]),createWeatherParticles(_0x4690f3[_0xf8f7c2(0xb5)][_0xf8f7c2(0x85)]);const _0x253163=document[_0xf8f7c2(0x8d)](_0xf8f7c2(0xf2));_0x253163[_0xf8f7c2(0x151)]=_0x522e28[_0xf8f7c2(0x143)]+',\x20'+_0x522e28['country'],_0x253163[_0xf8f7c2(0xfd)]['add'](_0xf8f7c2(0xff)),setTimeout(()=>_0x253163[_0xf8f7c2(0xfd)]['remove'](_0xf8f7c2(0xff)),0x7d0),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x9c))[_0xf8f7c2(0x151)]=_0x26e755[_0xf8f7c2(0x169)](_0xf8f7c2(0xd7),{'hour':_0xf8f7c2(0x8c),'minute':_0xf8f7c2(0x8c),'hour12':!![]}),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x13c))[_0xf8f7c2(0x151)]=_0x26e755[_0xf8f7c2(0xd6)](_0xf8f7c2(0xd7),{'weekday':_0xf8f7c2(0xeb),'year':_0xf8f7c2(0xc8),'month':'long','day':_0xf8f7c2(0xc8)});const _0x3ea847=document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x84)),_0x15f6a2=_0x4690f3[_0xf8f7c2(0xb5)][_0xf8f7c2(0x85)];_0x3ea847['innerHTML']=getWeatherIcon(_0x15f6a2,!![]),_0x3ea847[_0xf8f7c2(0xf1)]=_0xf8f7c2(0xaa),updateTemperatureDisplay(_0x4690f3),document['getElementById'](_0xf8f7c2(0x145))['textContent']=_0x4690f3[_0xf8f7c2(0xb5)][_0xf8f7c2(0x85)],document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x159))['textContent']=(isCelsius?Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0x12a)]):Math[_0xf8f7c2(0x98)](_0x4690f3['wind_mph']))+'\x20'+(isCelsius?'km/h':'mph'),document['getElementById'](_0xf8f7c2(0xd8))[_0xf8f7c2(0x151)]=_0x4690f3['humidity']+'%',document[_0xf8f7c2(0x8d)]('pressure')['textContent']=(isCelsius?_0x4690f3[_0xf8f7c2(0xef)]:Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0xef)]*0.02953))+'\x20'+(isCelsius?'mb':_0xf8f7c2(0x8a)),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x14f))[_0xf8f7c2(0x151)]=(isCelsius?_0x4690f3[_0xf8f7c2(0xfa)]:Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0xfa)]*0.621371))+'\x20'+(isCelsius?'km':'mi'),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x165))[_0xf8f7c2(0x151)]=(isCelsius?Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0x12a)]):Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0xa7)]))+'\x20'+(isCelsius?_0xf8f7c2(0xac):'mph'),document['getElementById'](_0xf8f7c2(0xdb))[_0xf8f7c2(0x151)]=''+_0x4690f3['wind_dir'],document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x80))[_0xf8f7c2(0x151)]=_0x4690f3[_0xf8f7c2(0xd8)]+'%',document[_0xf8f7c2(0x8d)](_0xf8f7c2(0xf9))[_0xf8f7c2(0x151)]=(isCelsius?_0x4690f3[_0xf8f7c2(0xef)]:Math[_0xf8f7c2(0x98)](_0x4690f3[_0xf8f7c2(0xef)]*0.02953))+'\x20'+(isCelsius?'mb':_0xf8f7c2(0x8a)),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0xe8))['textContent']=_0x4690f3['uv'];const _0xba37cc=document[_0xf8f7c2(0x8d)](_0xf8f7c2(0xb0));_0xba37cc[_0xf8f7c2(0x9a)][_0xf8f7c2(0xbb)]=_0xf8f7c2(0x10a)+windDirection+_0xf8f7c2(0x11b);const _0x160aa8=_0x4c21b9[0x0]['hour'],_0x16b48b=document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x96));_0x16b48b['innerHTML']='';const _0x49f901=_0x160aa8['slice'](0x0,0x18)[_0xf8f7c2(0x142)]((_0x4f313d,_0x3ca438)=>_0x3ca438%0x2===0x0),_0x178932=[..._0x49f901,..._0x49f901];_0x178932[_0xf8f7c2(0xf8)]((_0x505575,_0x1c232f)=>{const _0x53ac32=_0xf8f7c2,_0x2f23b3=new Date(_0x505575[_0x53ac32(0xc3)]),_0x1a9d50=_0x2f23b3['toLocaleTimeString'](_0x53ac32(0xd7),{'hour':_0x53ac32(0xc8),'hour12':!![]})[_0x53ac32(0xa2)](_0x53ac32(0x115),'a')['replace'](_0x53ac32(0x7f),'p'),_0x2f176d=document[_0x53ac32(0x12f)](_0x53ac32(0x11d));_0x2f176d[_0x53ac32(0xf1)]=_0x53ac32(0x157),_0x2f176d[_0x53ac32(0x9a)]['animationDelay']=_0x1c232f*0.1+'s',_0x2f176d[_0x53ac32(0x11a)]=_0x53ac32(0x167)+_0x1a9d50+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-4xl\x20mb-4\x22>'+getWeatherIcon(_0x505575[_0x53ac32(0xb5)][_0x53ac32(0x85)])+_0x53ac32(0x11c)+(isCelsius?Math['round'](_0x505575[_0x53ac32(0xe2)]):Math['round'](_0x505575['temp_f']))+_0x53ac32(0xbd)+_0x505575['chance_of_rain']+'%\x20rain</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x16b48b[_0x53ac32(0x160)](_0x2f176d);});const _0x585933=document[_0xf8f7c2(0xa6)](_0xf8f7c2(0xbe)),_0x555e7a=Math[_0xf8f7c2(0xdd)](0x28,0x50-windSpeed/0x2);_0x585933[_0xf8f7c2(0x9a)][_0xf8f7c2(0x109)]=_0x555e7a+'s';const _0x50a846=document['getElementById'](_0xf8f7c2(0xdc));_0x50a846[_0xf8f7c2(0x11a)]='',_0x4c21b9[_0xf8f7c2(0x122)](0x1,0x6)['forEach']((_0x4b60d1,_0x3ba68d)=>{const _0xdfc711=_0xf8f7c2,_0x305d54=new Date(_0x4b60d1['date']),_0x34010b=_0x305d54['toLocaleDateString'](_0xdfc711(0xd7),{'weekday':'short'}),_0x17be35=document[_0xdfc711(0x12f)]('div');_0x17be35[_0xdfc711(0xf1)]='cinematic-forecast-card',_0x17be35[_0xdfc711(0x9a)][_0xdfc711(0xf5)]=_0x3ba68d*0.2+'s',_0x17be35[_0xdfc711(0x11a)]=_0xdfc711(0x148)+_0x34010b+_0xdfc711(0x90)+getWeatherIcon(_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0xb5)][_0xdfc711(0x85)])+_0xdfc711(0x127)+(isCelsius?Math[_0xdfc711(0x98)](_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0x119)]):Math[_0xdfc711(0x98)](_0x4b60d1['day'][_0xdfc711(0xad)]))+_0xdfc711(0xd4)+(isCelsius?Math[_0xdfc711(0x98)](_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0x146)]):Math[_0xdfc711(0x98)](_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0x10c)]))+_0xdfc711(0x168)+_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0xb5)][_0xdfc711(0x85)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-center\x20items-center\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-opacity-80\x20text-sm\x20flex\x20items-center\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-tint\x20text-xs\x22></i>\x20'+_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0x97)]+'%\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-opacity-80\x20text-sm\x20flex\x20items-center\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-wind\x20text-xs\x22></i>\x20'+(isCelsius?Math[_0xdfc711(0x98)](_0x4b60d1[_0xdfc711(0x113)][_0xdfc711(0xd2)]):Math['round'](_0x4b60d1[_0xdfc711(0x113)]['maxwind_mph']))+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x50a846[_0xdfc711(0x160)](_0x17be35);});const _0x3d29d2=new Date();document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x118))['textContent']='Last\x20updated:\x20'+_0x3d29d2['toLocaleTimeString'](_0xf8f7c2(0xd7),{'hour':'2-digit','minute':_0xf8f7c2(0x8c),'hour12':!![]}),document[_0xf8f7c2(0x8d)](_0xf8f7c2(0x76))[_0xf8f7c2(0xfd)]['remove']('hidden');}function updateTemperatureDisplay(_0x460654){const _0xf9b4e4=_0x53ee5f,_0x1018ac=document[_0xf9b4e4(0x8d)](_0xf9b4e4(0xc4)),_0x56111e=isCelsius?Math['round'](_0x460654[_0xf9b4e4(0xe2)]):Math[_0xf9b4e4(0x98)](_0x460654[_0xf9b4e4(0x95)]),_0x4d84aa=isCelsius?Math[_0xf9b4e4(0x98)](_0x460654[_0xf9b4e4(0x12c)]):Math[_0xf9b4e4(0x98)](_0x460654[_0xf9b4e4(0xb6)]);_0x1018ac[_0xf9b4e4(0x9a)][_0xf9b4e4(0xfb)]='scaleIn\x200.6s\x20cubic-bezier(0.175,\x200.885,\x200.32,\x201.275)',setTimeout(()=>{const _0x23a0a3=_0xf9b4e4;_0x1018ac[_0x23a0a3(0x151)]=_0x56111e,_0x1018ac['style'][_0x23a0a3(0xfb)]='';},0x12c),document['getElementById'](_0xf9b4e4(0x73))[_0xf9b4e4(0x151)]=_0xf9b4e4(0xa0)+_0x4d84aa+'°';}function toggleTheme(){const _0x1ac553=_0x53ee5f;isDarkMode=!isDarkMode;const _0x11ca79=document[_0x1ac553(0x8d)]('themeToggle'),_0x29a244=_0x11ca79[_0x1ac553(0xa6)]('.theme-toggle-switch\x20i');_0x11ca79[_0x1ac553(0x9a)][_0x1ac553(0xfb)]=_0x1ac553(0x94),setTimeout(()=>_0x11ca79[_0x1ac553(0x9a)][_0x1ac553(0xfb)]='',0x190),!isDarkMode?(_0x29a244['className']=_0x1ac553(0x108),_0x11ca79[_0x1ac553(0xa6)](_0x1ac553(0x134))['style'][_0x1ac553(0xa3)]='calc(100%\x20-\x202rem)',document[_0x1ac553(0x103)][_0x1ac553(0xfd)][_0x1ac553(0x158)](_0x1ac553(0x16b))):(_0x29a244[_0x1ac553(0xf1)]=_0x1ac553(0x15d),_0x11ca79[_0x1ac553(0xa6)]('.theme-toggle-switch')['style'][_0x1ac553(0xa3)]=_0x1ac553(0x163),document[_0x1ac553(0x103)][_0x1ac553(0xfd)]['remove'](_0x1ac553(0x16b))),_0x11ca79[_0x1ac553(0xbc)](_0x1ac553(0x14d),isDarkMode[_0x1ac553(0x110)]());}function toggleTemperatureUnit(){const _0x21aec4=_0x53ee5f;isCelsius=!isCelsius;const _0xd0376d=document[_0x21aec4(0x8d)]('tempToggle'),_0x387f5a=_0xd0376d[_0x21aec4(0xa6)](_0x21aec4(0xe0));_0xd0376d[_0x21aec4(0x9a)][_0x21aec4(0xfb)]=_0x21aec4(0x94),setTimeout(()=>_0xd0376d[_0x21aec4(0x9a)][_0x21aec4(0xfb)]='',0x190),isCelsius?_0x387f5a[_0x21aec4(0x9a)]['left']=_0x21aec4(0x163):_0x387f5a[_0x21aec4(0x9a)][_0x21aec4(0xa3)]=_0x21aec4(0xd5),lastWeatherData&&updateTemperatureDisplay(lastWeatherData[_0x21aec4(0xf0)]);}function _0x3a62(){const _0x549f28=['pause','https://lottie.host/d6752e68-8a36-4d9c-9661-559f1efdefb4/hFd2fO3sbs.json','fas\x20fa-sun\x20text-yellow-500\x20text-sm','animationDuration','translateX(-50%)\x20translateY(-100%)\x20rotate(','Rainy\x20Simulation','mintemp_f','width','fas\x20fa-moon','geolocation','toString','fas\x20fa-bolt','value','day','Please\x20enter\x20a\x20city\x20name','\x20AM','.parallax-layer','The\x20fastest\x20wind\x20speed\x20ever\x20recorded\x20on\x20Earth\x20was\x20253\x20mph\x20during\x20a\x20tornado\x20in\x20Oklahoma\x20in\x201999.','lastUpdated','maxtemp_c','innerHTML','deg)','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-2xl\x20font-bold\x20mb-2\x22>','div','<i\x20class=\x22','length','background','cinematic-bg\x20weather-bg-snowy','slice','Sunny\x20Simulation','wind_degree','clientY','overcast','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-center\x20items-center\x20gap-3\x20mb-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-3xl\x20font-bold\x22>','fas\x20fa-snowflake','sunnySimulator','wind_kph','weather-bg-clear-night','feelslike_c','dust','addEventListener','createElement','fog','1820100CwrvFZ','A\x20single\x20raindrop\x20falls\x20at\x20about\x207\x20meters\x20per\x20second\x20(16\x20mph).','weather-bg-snowy','.theme-toggle-switch','json','src','2921376cAuxpj','rainySimulator','px)','lottieContainer','border-red-400','currentDate','innerWidth','querySelectorAll','innerHeight','163010MFERiT','loading','filter','name','\x22></i>','description','mintemp_c','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-300\x20{\x20animation-delay:\x20300ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-500\x20{\x20animation-delay:\x20500ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-700\x20{\x20animation-delay:\x20700ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-800\x20{\x20animation-delay:\x20800ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-900\x20{\x20animation-delay:\x20900ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-1000\x20{\x20animation-delay:\x201000ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.animation-delay-1100\x20{\x20animation-delay:\x201100ms;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.glowing-text\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-shadow:\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x200\x200\x2020px\x20rgba(255,255,255,0.8),\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x200\x200\x2040px\x20rgba(100,150,255,0.6),\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x200\x200\x2060px\x20rgba(100,150,255,0.4);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-semibold\x20text-xl\x20mb-4\x22>','hidden','border-blue-400','726804VdUdIX','thunder','aria-checked','coords','visibility','load','textContent','splashScreen','Paris','autoplay','fas\x20fa-cloud-showers-heavy','none','cinematic-forecast-card','add','windSpeed','windFlowLines','includes','https://api.weatherapi.com/v1','fas\x20fa-moon\x20text-gray-700\x20text-sm','/forecast.json?key=','66sUhfTu','appendChild','rain','London','0.25rem','Tokyo','windSpeedCard','Dubai','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-semibold\x20text-lg\x20mb-3\x22>','°</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-opacity-80\x20text-sm\x20mb-4\x22>','toLocaleTimeString','location','light-theme','error','fas\x20fa-info-circle\x20mr-3\x20text-blue-400\x20animate-pulse','translate(','Geolocation\x20is\x20not\x20supported\x20by\x20your\x20browser','68ZWemcQ','.wind-flow-line','fog-particle\x20particle','City\x20not\x20found.\x20Please\x20try\x20another\x20location.','feelsLike','message','The\x20coldest\x20temperature\x20ever\x20recorded\x20was\x20-128.6°F\x20(-89.2°C)\x20at\x20the\x20Soviet\x20Vostok\x20Station\x20in\x20Antarctica.','weatherContent','fas\x20fa-cloud-showers-water','lottie-sun','pollen-particle','snow-particle','fadeIn\x200.5s\x20ease-in','sun','weatherBg','weatherApp','\x20PM','humidityCard','shake','clientX','58668OTrgRI','weatherIcon','text','<i\x20class=\x22fas\x20fa-sun\x22></i>','&q=','triviaFact','dust-particle','inHg','height','2-digit','getElementById','lottie-snow','Sydney','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-5xl\x20mb-6\x22>','particleSystem','pollen','&days=6&aqi=no&alerts=no','toggleBounce\x200.4s\x20cubic-bezier(0.68,\x20-0.55,\x200.265,\x201.55)','temp_f','hourlyForecast','daily_chance_of_rain','round','head','style','-2°','currentTime','weather-bg-sunny','fas\x20fa-cloud-rain','splashParticles','Feels\x20like\x20','remove','replace','left','<i\x20class=\x22fas\x20fa-snowflake\x22></i>','Snow','querySelector','wind_mph','border-opacity-30','scale(1.1)','cinematic-weather-icon','toLowerCase','km/h','maxtemp_f','cinematic-bg\x20','lottie-container\x20','windDirection','longitude','28°','fas\x20fa-smog','particle','condition','feelslike_f','snow-particle\x20particle','px,\x20','localtime','New\x20York','transform','setAttribute','°</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-opacity-70\x20text-sm\x22>','.carousel-track','display','random','sunny','snowySimulator','time','temperature','blizzard','Clouds\x20can\x20weigh\x20more\x20than\x201\x20million\x20pounds.','fas\x20fa-cloud','numeric','snow','forecastday','fontSize','\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background=\x22transparent\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20speed=\x221\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20loop\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20autoplay\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22width:\x20100%;\x20height:\x20100%;\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20></lottie-player>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','loop','Rio\x20de\x20Janeiro','🌫️','Singapore\x20has\x20the\x20most\x20lightning\x20strikes\x20of\x20any\x20country\x20in\x20the\x20world.','errorMessage','maxwind_kph','16°','°</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-opacity-70\x20text-xl\x22>','calc(100%\x20-\x202rem)','toLocaleDateString','en-US','humidity','603NBYAyC','Sunny','windDirectionText','forecast','max','rainy','Rain','.temp-toggle-switch','triviaPopup','temp_c','31577sdpSGT','ee5fa78efc1f4eeb954135649251312','cloud','3004604hivdve','The\x20driest\x20place\x20on\x20Earth\x20is\x20the\x20Atacama\x20Desert\x20in\x20Chile,\x20where\x20it\x20hasn\x27t\x20rained\x20for\x20over\x20400\x20years\x20in\x20some\x20areas.','uvIndex','🌤️','weather-bg-stormy','long','top','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<lottie-player\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20src=\x22','cinematic-bg\x20weather-bg-rainy','pressure_mb','current','className','cityName','100%','opacity','animationDelay','mist','weather-bg-cloudy','forEach','pressureCard','vis_km','animation','suggestions','classList','floor','glowing-text','clear','drizzle','Simulation\x20mode\x20active.\x20Search\x20for\x20a\x20real\x20location\x20to\x20exit.','body','The\x20highest\x20temperature\x20ever\x20recorded\x20on\x20Earth\x20was\x20134°F\x20(56.7°C)\x20in\x20Death\x20Valley,\x20California\x20in\x201913.','trim'];_0x3a62=function(){return _0x549f28;};return _0x3a62();}function showError(_0x2387f6,_0x7b736b=!![]){const _0x2c4a5c=_0x53ee5f,_0x497081=document['getElementById']('error'),_0x11b7d3=document[_0x2c4a5c(0x8d)](_0x2c4a5c(0xd1));_0x11b7d3[_0x2c4a5c(0x151)]=_0x2387f6,_0x497081[_0x2c4a5c(0xfd)][_0x2c4a5c(0xa1)](_0x2c4a5c(0x149)),_0x7b736b?(_0x497081[_0x2c4a5c(0xfd)][_0x2c4a5c(0x158)](_0x2c4a5c(0x13b),'border-opacity-30'),_0x497081[_0x2c4a5c(0xa6)]('i')[_0x2c4a5c(0xf1)]='fas\x20fa-exclamation-triangle\x20mr-3\x20text-red-400\x20animate-pulse'):(_0x497081[_0x2c4a5c(0xfd)]['add'](_0x2c4a5c(0x14a),_0x2c4a5c(0xa8)),_0x497081['querySelector']('i')['className']=_0x2c4a5c(0x6c)),_0x497081[_0x2c4a5c(0xfd)][_0x2c4a5c(0x158)](_0x2c4a5c(0x81)),setTimeout(()=>_0x497081['classList'][_0x2c4a5c(0xa1)](_0x2c4a5c(0x81)),0x1f4),!_0x7b736b&&setTimeout(hideError,0x1388);}function hideError(){const _0x384d05=_0x53ee5f;document[_0x384d05(0x8d)](_0x384d05(0x16c))['classList'][_0x384d05(0x158)](_0x384d05(0x149));}function showTrivia(){const _0x4b8250=_0x53ee5f;document[_0x4b8250(0x8d)](_0x4b8250(0xe1))['classList'][_0x4b8250(0xa1)](_0x4b8250(0x149)),document[_0x4b8250(0x8d)](_0x4b8250(0x88))[_0x4b8250(0x151)]=weatherTrivia[currentTriviaIndex];}function hideTrivia(){const _0x165432=_0x53ee5f;document['getElementById'](_0x165432(0xe1))[_0x165432(0xfd)][_0x165432(0x158)]('hidden');}function nextTrivia(){const _0x3dfb03=_0x53ee5f;currentTriviaIndex=(currentTriviaIndex+0x1)%weatherTrivia[_0x3dfb03(0x11f)],document['getElementById'](_0x3dfb03(0x88))[_0x3dfb03(0x151)]=weatherTrivia[currentTriviaIndex];const _0x5baabf=document[_0x3dfb03(0x8d)]('triviaContent');_0x5baabf[_0x3dfb03(0x9a)][_0x3dfb03(0xfb)]=_0x3dfb03(0x156),setTimeout(()=>{const _0x46fc8f=_0x3dfb03;_0x5baabf[_0x46fc8f(0x9a)]['animation']=_0x46fc8f(0x7b);},0xa);}window[_0x53ee5f(0x12e)](_0x53ee5f(0x150),()=>{const _0x474414=_0x53ee5f;initSplashScreen();const _0x10a864=document[_0x474414(0x12f)]('style');_0x10a864['textContent']=_0x474414(0x147),document[_0x474414(0x99)][_0x474414(0x160)](_0x10a864);});
+    </script>
+</body>
+</html>
